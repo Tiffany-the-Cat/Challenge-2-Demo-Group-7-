@@ -2,6 +2,8 @@ import Foundation
 
 // How Codable Works. Master Structs or Functions are Chapter Titles.
 
+/*
+ 
 struct MainFunctions {
     // How to encode and decode variables.
     let testVar : Int = 0
@@ -60,3 +62,6 @@ struct DefiningStructsUncertain {
         }
     }
 }
+
+ */
+
