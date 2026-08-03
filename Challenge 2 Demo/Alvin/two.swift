@@ -25,10 +25,35 @@ struct two: View {
                 
             }
             
-            
-            Text("Current Balance")
-                .font(.largeTitle)
-            
+            HStack {
+                
+                Text("Current Balance")
+                    .font(.largeTitle)
+                
+                Menu("...") {
+                    
+                    Button {
+                        print("Hello")
+                    } label: {
+                        Text("Add")
+                        Text("Add Money")
+                        Image(systemName: "creditcard.rewards.fill")
+                        
+                    }
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Withdraw")
+                        Text("Withdraw Money")
+                        Image(systemName: "creditcard.arrow.trianglehead.2.clockwise.rotate.90")
+
+                    }
+                    
+                }
+                
+                
+            }
             HStack {
                 
                 Rectangle()
