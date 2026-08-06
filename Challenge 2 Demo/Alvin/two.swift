@@ -47,13 +47,16 @@ struct two: View {
                         Text("Withdraw")
                         Text("Withdraw Money")
                         Image(systemName: "creditcard.arrow.trianglehead.2.clockwise.rotate.90")
-
+                        
                     }
                     
                 }
                 
                 
             }
+            
+            
+            
             HStack {
                 
                 Rectangle()
@@ -61,12 +64,80 @@ struct two: View {
                     .frame(width: 140, height: 200)
                     .cornerRadius(15)
                     .overlay(
-                        
-                        Text("Daily income")
-                            .foregroundStyle(.white)
-                        
-                        
-                        
+                        ZStack {
+                            
+                            VStack {
+                                
+                                HStack {
+                                    
+                                    Text("Daily income")
+                                        .foregroundStyle(.white)
+                                    
+                                    
+                                    Menu {
+                                        
+                                        Button {
+                                            print("Clicked")
+                                        } label: {
+                                            
+                                            Text("Withdraw")
+                                            Text("Withdraw Money")
+                                            Image(systemName: "creditcard.arrow.trianglehead.2.clockwise.rotate.90")
+                                            
+                                        }
+                                        
+                                    } label: {
+                                        Text("...")
+                                            .foregroundStyle(.white)
+                                            .offset(y: -3)
+                                    }
+                                    
+                                }
+                                
+                                
+                                Text("32%")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .opacity(0.5)
+                                
+                                
+                                
+                                Rectangle()
+                                    .fill(.white)
+                                    .frame(width: 130,height: 90)
+                                    .cornerRadius(15)
+                                    .offset(y: 8)
+                                    .overlay(
+                                        
+                                        ZStack {
+                                            
+                                            VStack(alignment: .leading) {
+                                                
+                                                Text("My Balance")
+                                                    .opacity(0.5)
+                                                
+                                                HStack {
+                                                    Text("$")
+                                                        .font(.title3)
+                                                    Text("12,920.")
+                                                        .font(.title3)
+                                                    Text("00")
+                                                        .font(.title3)
+                                                        .offset(x: -7)
+                                                    
+                                                }
+                                            }
+                                            
+                                        }
+                                        
+                                        
+                                    )
+                                
+                                
+                            }
+                            
+                        }
                     )
                 
                 
