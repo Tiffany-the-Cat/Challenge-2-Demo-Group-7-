@@ -145,6 +145,19 @@ struct two: View {
                     .fill(.blue)
                     .frame(width: 140, height: 200)
                     .cornerRadius(15)
+                    .overlay(
+                        
+                        ZStack {
+                            
+                            VStack {
+                                
+                                
+                                
+                            }
+                            
+                        }
+                        
+                    )
                 
                 
                 
