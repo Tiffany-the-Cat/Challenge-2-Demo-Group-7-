@@ -28,6 +28,7 @@ struct two: View {
             HStack {
                 
                 Text("Current Balance")
+                    .bold()
                     .font(.largeTitle)
                 
                 Menu("...") {
@@ -125,6 +126,7 @@ struct two: View {
                                                     Text("00")
                                                         .font(.title3)
                                                         .offset(x: -7)
+                                                        .opacity(0.5)
                                                     
                                                 }
                                             }
@@ -151,6 +153,72 @@ struct two: View {
                             
                             VStack {
                                 
+                                HStack {
+                                    
+                                    Text("Spending")
+                                        .foregroundStyle(.white)
+                                    
+                                    
+                                    Menu {
+                                        
+                                        Button {
+                                            print("Clicked")
+                                        } label: {
+                                            
+                                            Text("Withdraw")
+                                            Text("Withdraw Money")
+                                            Image(systemName: "creditcard.arrow.trianglehead.2.clockwise.rotate.90")
+                                            
+                                        }
+                                        
+                                    } label: {
+                                        Text("...")
+                                            .foregroundStyle(.white)
+                                            .offset(y: -3)
+                                    }
+                                    
+                                }
+                                
+                                
+                                Text("21%")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .foregroundStyle(.white)
+                                    .opacity(0.5)
+                                
+                                
+                                
+                                Rectangle()
+                                    .fill(.white)
+                                    .frame(width: 130,height: 90)
+                                    .cornerRadius(15)
+                                    .offset(y: 8)
+                                    .overlay(
+                                        
+                                        ZStack {
+                                            
+                                            VStack(alignment: .leading) {
+                                                
+                                                Text("Spending")
+                                                    .opacity(0.5)
+                                                
+                                                HStack {
+                                                    Text("$")
+                                                        .font(.title3)
+                                                    Text("8,205.")
+                                                        .font(.title3)
+                                                    Text("00")
+                                                        .font(.title3)
+                                                        .offset(x: -7)
+                                                        .opacity(0.5)
+                                                    
+                                                }
+                                            }
+                                            
+                                        }
+                                        
+                                        
+                                    )
                                 
                                 
                             }
@@ -162,6 +230,29 @@ struct two: View {
                 
                 
             }
+            
+            Text("Transactions History")
+                .bold()
+                .font(.title)
+            
+            HStack {
+                
+       
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                    .font(.largeTitle)
+                 
+                
+                VStack(alignment: .leading) {
+                    
+                    Text("To Albert")
+                        .bold()
+                        .font(.title2)
+                    Text("9 May 2026 at 9:00AM")
+                    
+                    
+                }
+            }
+            
         }
         
         
