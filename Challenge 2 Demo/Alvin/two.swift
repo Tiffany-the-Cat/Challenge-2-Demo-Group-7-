@@ -248,9 +248,14 @@ struct two: View {
                         .bold()
                         .font(.title2)
                     Text("9 May 2026 at 9:00AM")
-                    
-                    
                 }
+                
+                
+                
+                Text("-$30.24")
+                    .bold()
+                    .font(.title3)
+                
             }
             
         }
