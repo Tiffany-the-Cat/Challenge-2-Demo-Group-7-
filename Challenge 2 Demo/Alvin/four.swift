@@ -8,10 +8,32 @@
 import SwiftUI
 
 struct four: View {
+    
+    @State var url = "Youtube.com"
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(url)
+            .bold()
+            .font(.largeTitle)
+            .padding()
+            .border(Color.black, width:2)
         
-        Rectangle()
+        Button {
+            print("Clicked")
+            UIPasteboard.general.string = url
+      
+          
+            
+            
+            
+            
+            
+        } label: {
+            
+           Text("Copy")
+        }
+        
             
     }
 }
