@@ -11,20 +11,17 @@ struct PageView: View {
     var body: some View {
         TabView {
             Tab {
-                Text("Page 1")
-                    .font(.system(size: 35))
+                ProfileView()
             } label: {
                 Image(systemName: "1.calendar")
             }
             Tab {
-                Text("Page 3")
-                    .font(.system(size: 35))
+                PurchaseView()
             } label: {
                 Image(systemName: "3.calendar")
             }
             Tab {
-                Text("Page 5")
-                    .font(.system(size: 35))
+                HistoryView()
             } label: {
                 Image(systemName: "5.calendar")
             }
