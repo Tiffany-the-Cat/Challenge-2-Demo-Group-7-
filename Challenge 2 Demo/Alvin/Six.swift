@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Six: View {
+    @State var is_claimed = false
     var body: some View {
-        @State var is_claimed = false
         
         VStack {
             
@@ -20,30 +20,21 @@ struct Six: View {
             
             Button {
                 print("Clicked")
-                
                 is_claimed = true
                 
             } label: {
                 
-                if !is_claimed {
-                    
-                    Text("Claim")
-                        .font(.largeTitle)
-                        .padding()
-                        .background(.blue)
-                        .foregroundStyle(.white)
-                        .clipShape(.rect(cornerRadius: 10))
-                        .shadow(color: .black.opacity(0.5), radius: 10, x: 5, y: 10)
-                    
-                } else if is_claimed {
-                    Text("Claimed")
-                        .font(.largeTitle)
-                        .padding()
-                        .background(.blue)
-                        .foregroundStyle(.white)
-                        .clipShape(.rect(cornerRadius: 10))
-                        .shadow(color: .black.opacity(0.5), radius: 10, x: 5, y: 10)
-                }
+                
+                
+                Text(is_claimed ? "Claimed":"Claim")
+                    .font(.largeTitle)
+                    .padding()
+                    .background(.blue)
+                    .foregroundStyle(.white)
+                    .clipShape(.rect(cornerRadius: 10))
+                    .shadow(color: .black.opacity(0.5), radius: 10, x: 5, y: 10)
+                
+                
             }
         }
         

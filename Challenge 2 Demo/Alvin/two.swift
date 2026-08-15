@@ -13,56 +13,42 @@ struct two: View {
             VStack(alignment: .leading, spacing: 28) {
                 balanceHeader
 
-                HStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 16) {
                     StatCard(
-                        title: "Daily income",
-                        percent: "32%",
-                        subtitle: "My Balance",
-                        amount: "12,920.00"
-                    )
-                    StatCard(
-                        title: "Spending",
+                        title: "Spendings",
                         percent: "21%",
                         subtitle: "Spending",
-                        amount: "8,205.00"
+                        amount: "285.00"
+                    )
+                    .frame(maxWidth: .infinity, minHeight: 200)
+
+                    VoucherCard(
+                        vouchers: ["$2", "$5", "$10", "$1", "$15", "10%", "20%", "$3", "Free"]
                     )
                 }
-                .frame(height: 200)
 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Transactions History")
+                    Text("Payment History")
                         .font(.title2)
                         .bold()
 
                     TransactionRow(
-                        title: "To Albert",
-                        date: "9 May 2026 at 9:00AM",
-                        amount: "-$30.24",
-                        isReceived: false
+                        title: "Golden Pearl Milk Tea",
+                        date: "15/8/26",
+                        detail: "Medium, Less Sugar, 1x Extra Pearls, 2x Chocolate Chips...",
+                        amount: "-$6.50"
                     )
                     TransactionRow(
-                        title: "From Sarah",
-                        date: "8 May 2026 at 2:45PM",
-                        amount: "+$120.00",
-                        isReceived: true
+                        title: "Strawberry Matcha Latte",
+                        date: "13/8/26",
+                        detail: "Large, No Ice, 2x Diced Fruit",
+                        amount: "-$6.80"
                     )
                     TransactionRow(
-                        title: "To Coffee House",
-                        date: "7 May 2026 at 8:15AM",
-                        amount: "-$4.50",
-                        isReceived: false
-                    )
-                    TransactionRow(
-                        title: "From Payroll",
-                        date: "1 May 2026 at 12:00PM",
-                        amount: "+$2,500.00",
-                        isReceived: true
-                    )
-                    TransactionRow(
-                        title: "To Netflix",
-                        date: "30 Apr 2026 at 6:30PM",
-                        amount: "-$15.99",
-                        isReceived: false
+                        title: "Taro Frappuchino",
+                        date: "9/8/26",
+                        detail: "Small, No Sugar, 1x Milk Pudding",
+                        amount: "-$6.20"
                     )
                 }
             }
@@ -116,6 +102,48 @@ struct two: View {
     }
 }
 
+private struct VoucherCard: View {
+    let vouchers: [String]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("Vouchers")
+                    .font(.title2)
+                    .bold()
+                    .foregroundStyle(.white.opacity(0.9))
+
+                Spacer()
+            }
+
+            Spacer(minLength: 0)
+
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 3), spacing: 10) {
+                ForEach(vouchers, id: \.self) { voucher in
+                    Text(voucher)
+                        .font(.title3)
+                        .bold()
+                        .foregroundStyle(.blue)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+            }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(
+                colors: [.blue, Color(red: 0.15, green: 0.25, blue: 0.85)],
+                startPoint: .topTrailing,
+                endPoint: .bottomLeading
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+}
+
 private struct StatCard: View {
     let title: String
     let percent: String
@@ -126,7 +154,7 @@ private struct StatCard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text(title)
-                    .font(.subheadline)
+                    .font(.title2)
                     .bold()
                     .foregroundStyle(.white.opacity(0.9))
 
@@ -145,11 +173,17 @@ private struct StatCard: View {
                         .contentShape(Rectangle())
                 }
             }
-
-            Text(percent)
-                .font(.system(size: 36, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-
+            HStack {
+                
+                Text(percent)
+                    .font(.system(size: 36, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                
+                Image(systemName: "arrowshape.up")
+                    .font(.largeTitle)
+                    .foregroundStyle(.green)
+                
+            }
             Spacer(minLength: 0)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -188,41 +222,47 @@ private struct StatCard: View {
 private struct TransactionRow: View {
     let title: String
     let date: String
+    let detail: String
     let amount: String
-    let isReceived: Bool
-
-    private var tint: Color { isReceived ? .green : .red }
-    private var icon: String {
-        isReceived ? "receipt" : "rectangle.portrait.and.arrow.right"
-    }
 
     var body: some View {
         HStack(spacing: 14) {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(tint.opacity(0.15))
+                    .fill(.red.opacity(0.15))
                     .frame(width: 48, height: 48)
 
-                Image(systemName: icon)
+                Image(systemName: "cup.and.saucer.fill")
                     .font(.title2)
-                    .foregroundStyle(tint)
+                    .foregroundStyle(.red)
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(.headline)
-                Text(date)
+                HStack(spacing: 8) {
+                    Text(title)
+                        .font(.headline)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+
+                    Text(date)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                Text(detail)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
             }
 
-            Spacer()
+            Spacer(minLength: 8)
 
             Text(amount)
                 .font(.headline)
                 .bold()
                 .monospacedDigit()
-                .foregroundStyle(tint)
+                .foregroundStyle(.red)
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)

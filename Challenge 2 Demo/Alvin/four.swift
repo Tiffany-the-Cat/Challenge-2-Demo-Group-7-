@@ -9,7 +9,7 @@ import SwiftUI
 
 struct four: View {
 
-    @State var url = "Youtube.com"
+    @State var url = "BubbleTea.com"
     @State var isCopied = false
 
     var body: some View {
@@ -54,6 +54,16 @@ struct four: View {
                     withAnimation(.spring(duration: 0.4)) {
                         isCopied = true
                     }
+                    
+                    Task {
+                        try? await Task.sleep(nanoseconds: 2_000_000_000)
+                        withAnimation(.spring(duration:0.4)) {
+                            isCopied = false
+                        }
+                    }
+                    
+                    
+                    
                 } label: {
                     HStack(spacing: 8) {
                         Image(systemName: isCopied ? "checkmark.circle.fill" : "doc.on.doc")
