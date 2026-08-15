@@ -240,6 +240,7 @@ struct two: View {
        
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .font(.largeTitle)
+                    .foregroundStyle(.red)
                  
                 
                 VStack(alignment: .leading) {
