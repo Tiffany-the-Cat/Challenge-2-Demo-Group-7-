@@ -52,6 +52,7 @@ struct UserField: View {
 }
 
 struct ProfileView: View {
+    @Binding public var thisPage : PageNames
     var body: some View {
         VStack {
             Text("New Profile")
@@ -74,7 +75,7 @@ struct ProfileView: View {
                 } .padding(10)
             } .scaledToFit()
             Button {
-                
+                thisPage = .Home
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
@@ -90,8 +91,4 @@ struct ProfileView: View {
             Spacer()
         }
     }
-}
-
-#Preview {
-    ProfileView()
 }

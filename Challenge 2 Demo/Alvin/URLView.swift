@@ -1,17 +1,8 @@
-//
-//  four.swift
-//  Challenge 2 Demo
-//
-//  Created by Alvin Phyo Htet on 7/8/26.
-//
-
 import SwiftUI
 
-struct four: View {
-
-    @State var url = "BubbleTea.com"
+struct URLView: View {
+    @State var url = "www.bubbletea.com"
     @State var isCopied = false
-
     var body: some View {
         ZStack {
             LinearGradient(
@@ -20,17 +11,14 @@ struct four: View {
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
-
             VStack(spacing: 30) {
                 VStack(spacing: 12) {
                     Image(systemName: "link.circle.fill")
                         .font(.system(size: 70))
                         .foregroundStyle(.white)
-
-                    Text("Your Link")
+                    Text("Share with a Friend!")
                         .font(.title2)
                         .foregroundStyle(.white.opacity(0.8))
-
                     HStack(spacing: 8) {
                         Image(systemName: "link")
                             .foregroundStyle(.blue)
@@ -48,22 +36,17 @@ struct four: View {
                     .padding(.horizontal, 25)
                 }
                 .padding(.top, 60)
-
                 Button {
                     UIPasteboard.general.string = url
                     withAnimation(.spring(duration: 0.4)) {
                         isCopied = true
                     }
-                    
                     Task {
                         try? await Task.sleep(nanoseconds: 2_000_000_000)
                         withAnimation(.spring(duration:0.4)) {
                             isCopied = false
                         }
                     }
-                    
-                    
-                    
                 } label: {
                     HStack(spacing: 8) {
                         Image(systemName: isCopied ? "checkmark.circle.fill" : "doc.on.doc")
@@ -81,7 +64,6 @@ struct four: View {
                 }
                 .buttonStyle(.plain)
                 .scaleEffect(isCopied ? 0.95 : 1)
-
                 Spacer()
             }
         }
@@ -89,5 +71,5 @@ struct four: View {
 }
 
 #Preview {
-    four()
+    URLView()
 }

@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
+    @State public var thisPage : PageNames = .Profile
     var body: some View {
-        ZStack {
-            Color.brown
-                .ignoresSafeArea()
-            VStack {
-                Text("Tiffany & Alvin's")
-                    .foregroundStyle(.black)
-                    .font(.system(size: 30, weight: .bold))
-                Text("Challenge 2 Demo!")
-                    .foregroundStyle(.black)
-                    .font(.system(size: 30, weight: .bold))
-            }
-            .padding()
+        NavigationStack {
+            HomeView(thisPage: $thisPage)
+                .fullScreenCover(isPresented: Binding(
+                    get: { thisPage == .Profile },
+                    set: { incomplete in
+                        if !incomplete {thisPage = .Home}}
+                )) {
+                    ProfileView(thisPage: $thisPage)
+                }
         }
     }
 }
